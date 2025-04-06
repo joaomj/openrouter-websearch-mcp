@@ -22,12 +22,12 @@ This project implements an [MCP (Model Context Protocol)](https://github.com/mar
 | `OPENROUTER_API_KEY`| Your OpenRouter API key                                   | **Yes**  |                                                       |
 | `MODEL_NAME`         | OpenRouter model name (should support `:online` suffix)  | No       | `google/gemini-2.5-pro-exp-03-25:free:online`         |
 
-## Building
+## Installation 
 
-Clone the repository and run:
+To install the MCP server, you can use the following command:
 
 ```bash
-go build -o openrouter-websearch
+go install github.com/ChristianSch/openrouter-websearch-mcp
 ```
 
 ## Usage
@@ -38,8 +38,7 @@ Run the server:
 {
     "mcpServers": {
         "web-search": {
-            "command": "go",
-            "args": ["run", "/Users/christian/dev/openrouter-websearch/main.go"],
+            "command": "openrouter-websearch-mcp",
             "env": {
                 "OPENROUTER_API_KEY": "sk-or-v1-..."
             }
