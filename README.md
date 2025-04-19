@@ -20,14 +20,15 @@ This project implements an [MCP (Model Context Protocol)](https://github.com/mar
 | Variable             | Description                                               | Required | Default                                               |
 |----------------------|-----------------------------------------------------------|----------|-------------------------------------------------------|
 | `OPENROUTER_API_KEY`| Your OpenRouter API key                                   | **Yes**  |                                                       |
-| `MODEL_NAME`         | OpenRouter model name (should support `:online` suffix)  | No       | `google/gemini-2.5-pro-exp-03-25:free:online`         |
+| `MODEL_NAME`         | OpenRouter model name  | No       | `google/gemini-2.5-pro-preview-03-25`         |
 
 ## Installation 
 
-To install the MCP server, you can use the following command:
+To build and install the MCP server:
 
 ```bash
-go install github.com/ChristianSch/openrouter-websearch-mcp
+cd /path/to/openrouter-websearch-mcp
+go build -o /path/to/output/openrouter-mcp-server
 ```
 
 ## Usage
@@ -46,3 +47,35 @@ Run the server:
     }
 }
 ```
+
+## Cline Integration Setup
+
+1. Build the server:
+```bash
+cd /path/to/openrouter-websearch-mcp
+go build -o /path/to/output/openrouter-mcp-server
+```
+
+2. Configure Cline's MCP settings by editing:
+`path/to/cline_mcp_settings.json`
+
+3. Add this configuration:
+```json
+{
+  "mcpServers": {
+    "openrouter-mcp-server": {
+      "command": "/path/to/openrouter-mcp-server",
+      "args": [],
+      "env": {
+        "OPENROUTER_API_KEY": "your-api-key-here"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+4. Restart Cline extension to load the new MCP server
+
+5. Test the connection by using the `search_web` tool in Cline

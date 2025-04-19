@@ -73,8 +73,9 @@ func main() {
 
 	// Add tool handler
 	s.AddTool(tool, searchHandler)
+	fmt.Println("Successfully registered tool: search_web")
 
-	// Start the stdio server
+	// Start the stdio server (for MCP protocol)
 	if err := server.ServeStdio(s); err != nil {
 		fmt.Printf("Server error: %v\n", err)
 	}
