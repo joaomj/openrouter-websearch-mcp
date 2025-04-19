@@ -25,6 +25,7 @@ go.work.sum
 .env
 settings.json
 Cline/MCP/openrouter-websearch/settings.json
+Cline/MCP/openrouter-websearch/
 
 # Cline
 .clinerules
