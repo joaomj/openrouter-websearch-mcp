@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/ChristianSch/openrouter-websearch-mcp/openrouter"
 	"github.com/mark3labs/mcp-go/mcp"
@@ -36,11 +35,7 @@ func searchHandler(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallT
 	}
 
 	if modelName == "" {
-		modelName = "google/gemini-2.5-pro-exp-03-25:free"
-	}
-
-	if !strings.HasSuffix(modelName, ":online") {
-		modelName += ":online"
+		modelName = "google/gemini-2.5-pro-preview-03-25"
 	}
 
 	println("Using model:", modelName)
@@ -69,7 +64,7 @@ func main() {
 
 	// Add tool
 	tool := mcp.NewTool("search_web",
-		mcp.WithDescription("Perform a web search using OpenRouter :online model"),
+		mcp.WithDescription("Perform a web search using OpenRouter with Gemini model"),
 		mcp.WithString("query",
 			mcp.Required(),
 			mcp.Description("The search query to answer"),
